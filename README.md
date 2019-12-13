@@ -23,7 +23,7 @@ binance-java-api is a lightweight Java library for interacting with the [Binance
 </dependency>
 ```
 
-Alternatively, you can clone this repository and run the [examples](https://github.com/joaopsilva/binance-java-api/tree/master/src/test/java/com/binance/api/examples).
+Alternatively, you can clone this repository and run the [examples](https://github.com/QuantDimension/binance-java-api/tree/master/src/test/java/com/binance/api/examples).
 
 ## Examples
 
@@ -37,7 +37,7 @@ There are five main client classes that can be used to interact with the API:
 4. [`BinanceApiAsyncMarginRestClient`](https://github.com/QuantDimension/binance-java-api/blob/master/src/main/java/com/binance/api/client/BinanceApiAsyncMarginRestClient.java), an asynchronous/non-blocking [Binance Margin API](https://github.com/binance-exchange/binance-official-api-docs/blob/master/margin-api.md) client;
 5. [`BinanceApiWebSocketClient`](https://github.com/QuantDimension/binance-java-api/blob/master/src/main/java/com/binance/api/client/BinanceApiWebSocketClient.java), a data streaming client using [Binance WebSocket API](https://www.binance.com/restapipub.html#wss-endpoint).
 
-These can be instantiated through the corresponding factory method of [`BinanceApiClientFactory`](https://github.com/joaopsilva/binance-java-api/blob/master/src/main/java/com/binance/api/client/BinanceApiClientFactory.java), by passing the [security parameters](https://www.binance.com/restapipub.html#user-content-endpoint-security-type) `API-KEY` and `SECRET`, which can be created at [https://www.binance.com/userCenter/createApi.html](https://www.binance.com/userCenter/createApi.html).
+These can be instantiated through the corresponding factory method of [`BinanceApiClientFactory`](https://github.com/QuantDimension/binance-java-api/blob/master/src/main/java/com/binance/api/client/BinanceApiClientFactory.java), by passing the [security parameters](https://www.binance.com/restapipub.html#user-content-endpoint-security-type) `API-KEY` and `SECRET`, which can be created at [https://www.binance.com/userCenter/createApi.html](https://www.binance.com/userCenter/createApi.html).
 
 ```java
 BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance("API-KEY", "SECRET");
@@ -399,7 +399,7 @@ CandlestickEvent[eventType=kline,eventTime=1508417096085,symbol=ETHBTC,openTime=
 
 #### Keep a local depth cache for a symbol
 
-Please see [DepthCacheExample.java](https://github.com/joaopsilva/binance-java-api/blob/master/src/test/java/com/binance/api/examples/DepthCacheExample.java) for an implementation which uses the binance-java-api for maintaining a local depth cache for a symbol. In the same folder, you can also find how to do caching of account balances, aggregated trades, and klines/candlesticks.
+Please see [DepthCacheExample.java](https://github.com/QuantDimension/binance-java-api/blob/master/src/test/java/com/binance/api/examples/DepthCacheExample.java) for an implementation which uses the binance-java-api for maintaining a local depth cache for a symbol. In the same folder, you can also find how to do caching of account balances, aggregated trades, and klines/candlesticks.
 
 <details>
  <summary>View Response</summary>
@@ -493,7 +493,7 @@ client.onCandlestickEvent("ethbtc,ethusdt", CandlestickInterval.ONE_MINUTE, (Can
 
 ### Asynchronous requests
 
-To make an asynchronous request it is necessary to use the `BinanceApiAsyncRestClient`, and call the method with the same name as in the synchronous version, but passing a callback [`BinanceApiCallback`](https://github.com/joaopsilva/binance-java-api/blob/master/src/main/java/com/binance/api/client/BinanceApiCallback.java) that handles the response whenever it arrives.
+To make an asynchronous request it is necessary to use the `BinanceApiAsyncRestClient`, and call the method with the same name as in the synchronous version, but passing a callback [`BinanceApiCallback`](https://github.com/QuantDimension/binance-java-api/blob/master/src/main/java/com/binance/api/client/BinanceApiCallback.java) that handles the response whenever it arrives.
 
 #### Get latest price of a symbol asynchronously
 ```java
@@ -546,4 +546,4 @@ Invalid symbol
 </details>
 
 ### More examples
-An extensive set of examples, covering most aspects of the API, can be found at https://github.com/joaopsilva/binance-java-api/tree/master/src/test/java/com/binance/api/examples.
+An extensive set of examples, covering most aspects of the API, can be found at https://github.com/QuantDimension/binance-java-api/tree/master/src/test/java/com/binance/api/examples.
