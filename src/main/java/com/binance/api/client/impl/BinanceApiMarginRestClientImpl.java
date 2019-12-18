@@ -24,6 +24,15 @@ public class BinanceApiMarginRestClientImpl implements BinanceApiMarginRestClien
   public BinanceApiMarginRestClientImpl(String apiKey, String secret) {
     binanceApiService = createService(BinanceApiService.class, apiKey, secret);
   }
+  
+  // General endpoints
+  
+  @Override
+  public void ping() {
+    executeSync(binanceApiService.ping());
+  }
+  
+  // Margin Data endpoints
 
   @Override
   public MarginAccount getAccount() {
