@@ -14,6 +14,11 @@ public interface BinanceApiMarginRestClient {
    * Get current margin account information using default parameters.
    */
   MarginAccount getAccount();
+  
+  /**
+   * Test connectivity to the Rest API.
+   */
+  void ping();
 
   /**
    * Get all open orders on margin account for a symbol.
