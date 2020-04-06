@@ -97,4 +97,12 @@ public interface BinanceApiMarginRestClient {
    * @return transaction id
    */
   MarginTransaction repay(String asset, String amount);
+
+  /**
+   * Query loan record
+   * @param asset asset to query
+   * @param txId the tranId in POST /sapi/v1/margin/loan
+   * @return loan records
+   */
+  LoanQueryResult queryLoan(String asset, String txId);
 }

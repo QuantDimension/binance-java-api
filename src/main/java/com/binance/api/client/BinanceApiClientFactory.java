@@ -1,6 +1,6 @@
 package com.binance.api.client;
 
-import com.binance.api.client.impl.*
+import com.binance.api.client.impl.*;
 
 import static com.binance.api.client.impl.BinanceApiServiceGenerator.getSharedClient;
 

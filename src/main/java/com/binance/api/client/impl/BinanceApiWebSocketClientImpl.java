@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 /**
  * Binance API WebSocket client implementation using OkHttp.
  */
-public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient, Closeable {
+public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient {
 
     private final OkHttpClient client;
 
@@ -33,27 +33,22 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
 
     @Override
     public Closeable onDepthEvent(String symbols, BinanceApiCallback<DepthEvent> callback) {
-        final String channel = Arrays.stream(symbols.split(","))
-                .map(String::trim)
-                .map(s -> String.format("%s@depth", s))
-                .collect(Collectors.joining("/"));
+        final String channel = Arrays.stream(symbols.split(",")).map(String::trim)
+                .map(s -> String.format("%s@depth", s)).collect(Collectors.joining("/"));
         return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, DepthEvent.class));
     }
 
     @Override
-    public Closeable onCandlestickEvent(String symbols, CandlestickInterval interval, BinanceApiCallback<CandlestickEvent> callback) {
-        final String channel = Arrays.stream(symbols.split(","))
-                .map(String::trim)
-                .map(s -> String.format("%s@kline_%s", s, interval.getIntervalId()))
-                .collect(Collectors.joining("/"));
+    public Closeable onCandlestickEvent(String symbols, CandlestickInterval interval,
+            BinanceApiCallback<CandlestickEvent> callback) {
+        final String channel = Arrays.stream(symbols.split(",")).map(String::trim)
+                .map(s -> String.format("%s@kline_%s", s, interval.getIntervalId())).collect(Collectors.joining("/"));
         return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, CandlestickEvent.class));
     }
 
     public Closeable onAggTradeEvent(String symbols, BinanceApiCallback<AggTradeEvent> callback) {
-        final String channel = Arrays.stream(symbols.split(","))
-                .map(String::trim)
-                .map(s -> String.format("%s@aggTrade", s))
-                .collect(Collectors.joining("/"));
+        final String channel = Arrays.stream(symbols.split(",")).map(String::trim)
+                .map(s -> String.format("%s@aggTrade", s)).collect(Collectors.joining("/"));
         return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, AggTradeEvent.class));
     }
 
@@ -63,14 +58,19 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
 
     public Closeable onAllMarketTickersEvent(BinanceApiCallback<List<AllMarketTickersEvent>> callback) {
         final String channel = "!ticker@arr";
-        return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, new TypeReference<List<AllMarketTickersEvent>>() {}));
+        return createNewWebSocket(channel,
+                new BinanceApiWebSocketListener<>(callback, new TypeReference<List<AllMarketTickersEvent>>() {
+                }));
     }
 
     /**
-     * @deprecated This method is no longer functional. Please use the returned {@link Closeable} from any of the other methods to close the web socket.
+     * @deprecated This method is no longer functional. Please use the returned
+     *             {@link Closeable} from any of the other methods to close the web
+     *             socket.
      */
     @Override
-    public void close() { }
+    public void close() {
+    }
 
     private Closeable createNewWebSocket(String channel, BinanceApiWebSocketListener<?> listener) {
         String streamingUrl = String.format("%s/%s", BinanceApiConstants.WS_API_BASE_URL, channel);

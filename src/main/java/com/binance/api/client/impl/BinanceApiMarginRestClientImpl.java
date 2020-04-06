@@ -97,6 +97,12 @@ public class BinanceApiMarginRestClientImpl implements BinanceApiMarginRestClien
   }
 
   @Override
+  public LoanQueryResult queryLoan(String asset, String txId) {
+    long timestamp = System.currentTimeMillis();
+    return executeSync(binanceApiService.queryLoan(asset, txId, timestamp));
+  }
+
+  @Override
   public MarginTransaction repay(String asset, String amount) {
     long timestamp = System.currentTimeMillis();
     return executeSync(binanceApiService.repay(asset, amount, BinanceApiConstants.DEFAULT_RECEIVING_WINDOW, timestamp));
